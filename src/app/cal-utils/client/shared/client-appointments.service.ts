@@ -64,6 +64,7 @@ export class ClientAppointmentsService {
 
   //Inserting appointments of selected client from autofill to this.selectedClientApps array
   getClientAppointments(clientKey: string){
+    console.log("inside getClientAppointments");
     this.selectedClientApps = [];
       var x = this.getData();
       x.snapshotChanges().subscribe(item => {

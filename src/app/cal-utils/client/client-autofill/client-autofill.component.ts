@@ -85,7 +85,11 @@ export class ClientAutofillComponent implements OnInit {
 
  onEdit(client: Client){
    
-
+  console.log("On Edit");
+  console.log(client);
+  console.log(client.$key);
+  
+  if(client.$key != null){
   this._caleventService.selectedAppointment.firstName = client.firstName;
   this._caleventService.selectedAppointment.lastName = client.lastName;
   this._caleventService.selectedAppointment.email = client.email;
@@ -94,8 +98,20 @@ export class ClientAutofillComponent implements OnInit {
   this._caleventService.selectedAppointment.clientKey = client.$key;
   this._caleventService.selectedAppointment.gender = client.gender;
   //get all appointments for selected client
+  // if(this._caleventService.selectedAppointment.clientKey != null)
   this.clientAppService.getClientAppointments(this._caleventService.selectedAppointment.clientKey);
+}
+else{
 
+  this._caleventService.selectedAppointment.firstName = '';
+  this._caleventService.selectedAppointment.lastName = '';
+  this._caleventService.selectedAppointment.email = '';
+  this._caleventService.selectedAppointment.phone ='';
+  this._caleventService.selectedAppointment.landline ='';
+  this._caleventService.selectedAppointment.clientKey = null;
+  this._caleventService.selectedAppointment.gender = '';
+  this.clientAppService.noShow = 0;
+}
 }
 
 

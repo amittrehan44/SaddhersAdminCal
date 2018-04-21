@@ -96,6 +96,7 @@ export class AppointmentTodayComponent implements OnInit {
     }
 
     public sortByDate(): void {
+        console.log(this.today);
         console.log(this.today.getDate());
         console.log(this.today.getMonth());
         console.log(this.today.getFullYear());

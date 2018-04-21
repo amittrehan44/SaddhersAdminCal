@@ -148,7 +148,7 @@
         </div>
 
         <div *ngIf="_caleventService.selectedAppointment.$key != null" class="form-group">
-            <div class="col-md-offset-1 col-md-8 checkbox" >
+            <div [ngClass]="{redClass1: _caleventService.selectedAppointment.noShow}" class="col-md-offset-1 col-md-8 checkbox" >
                 <label>
                     <input id="sendCatalogId"
                         type="checkbox"
@@ -156,6 +156,7 @@
                         name="noShow" >
                     No Show
                 </label>
+                <div *ngIf="_caleventService.selectedAppointment.noShow" class="alert alert-danger" role="alert" >Client has not Arrived, and this will be added to his records </div><br>
             </div>
         </div>
 
