@@ -9,6 +9,7 @@ input.ng-invalid.ng-dirty{
 .card-header{
     background-color: #4da3ff;
     color: #fff;
+    font-size: 4em;
     font-weight: bold;
 }
 

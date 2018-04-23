@@ -22,7 +22,8 @@ export class ClientAppointmentsService {
 
   insertNewClient(client: string) 
   {
-    console.log("Inside InsertClientAPpointment ");
+    this.selectedClientApps = [];
+    console.log("Inside InsertClientAPpointment, adding new client to ClientAPP ");
     this.clientAppointmentsList.push({
       clientKey: client,
       appointmentKeys: this.selectedClientApps
@@ -65,6 +66,7 @@ export class ClientAppointmentsService {
   //Inserting appointments of selected client from autofill to this.selectedClientApps array
   getClientAppointments(clientKey: string){
     console.log("inside getClientAppointments");
+    console.log(clientKey);
     this.selectedClientApps = [];
       var x = this.getData();
       x.snapshotChanges().subscribe(item => {
@@ -74,7 +76,7 @@ export class ClientAppointmentsService {
           y["$key"] = element.key;
           if(y["clientKey"]==clientKey){
               console.log(y); 
-              if(y["appointmentKeys"]!=null || y["appointmentKeys"]!='') {
+              if(y["appointmentKeys"]!=null ||  y["appointmentKeys"] != undefined) {
                   //this.selectedClientApps = y["appointmentKeys"] as string[];
                   console.log(y["appointmentKeys"]);                  
                    
@@ -101,10 +103,10 @@ export class ClientAppointmentsService {
   }
 
   getNoShows(arg: string[]) {
-    this.noShow = 0;
+    
     var x = this.firebase.list('appointments');
     x.snapshotChanges().subscribe(item => {
-      
+      this.noShow = 0;
       item.forEach(element => {
           var y = element.payload.toJSON();
           y["$key"] = element.key;

@@ -89,7 +89,8 @@ export class ClientAutofillComponent implements OnInit {
   console.log(client);
   console.log(client.$key);
   
-  if(client.$key != null){
+  if(client.$key != null || client.$key != undefined){
+    console.log("yohoo");
   this._caleventService.selectedAppointment.firstName = client.firstName;
   this._caleventService.selectedAppointment.lastName = client.lastName;
   this._caleventService.selectedAppointment.email = client.email;
@@ -111,6 +112,7 @@ else{
   this._caleventService.selectedAppointment.clientKey = null;
   this._caleventService.selectedAppointment.gender = '';
   this.clientAppService.noShow = 0;
+  this.clientAppService.selectedClientApps = [];
 }
 }
 
