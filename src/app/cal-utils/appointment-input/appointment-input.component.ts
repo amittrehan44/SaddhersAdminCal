@@ -200,8 +200,10 @@ export class AppointmentInputComponent implements OnInit {
             this._caleventService.optionsMultiselect = null;
 
              //get all appointments for selected client
-             if(this._caleventService.selectedAppointment.clientKey!=null)
-             this.clientAppService.getClientAppointments(this._caleventService.selectedAppointment.clientKey);
+             if(this._caleventService.selectedAppointment.clientKey!=null){
+                    this.clientAppService.getClientAppointments1(this._caleventService.selectedAppointment.clientKey, this.clientAppService.allClientAppointments, this._caleventService.allAppointments);
+                    //this.clientAppService.getClientAppointments(this._caleventService.selectedAppointment.clientKey);
+                }
         }    
     }
 

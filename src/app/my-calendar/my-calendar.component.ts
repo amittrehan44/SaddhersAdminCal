@@ -33,7 +33,9 @@ import { AuthService } from './../core/auth.service';
 import { eventsAPI } from './../app.component';
 import { Services } from './../cal-utils/services.model';
 import {ClientAppointmentsService} from '../cal-utils/client/shared/client-appointments.service';
-
+import {ClientService} from '../cal-utils/client/shared/client.service';
+import {Client} from '../cal-utils/client/shared/client.model';
+import {ClientAppointments} from '../cal-utils/client/shared/client-appointments.model';
 
 const colors: any = {
     red: {
@@ -156,7 +158,11 @@ export class MyCalendarComponent implements OnInit {
     _tempMins: number;
     _tempMinsStr: string;
 
-    constructor(public modal: NgbModal, public _caleventService: CalEventsService, private clientAppService: ClientAppointmentsService, public auth: AuthService) { }
+    constructor(public modal: NgbModal, 
+                public _caleventService: CalEventsService,
+                private clientService: ClientService,  
+                private clientAppService: ClientAppointmentsService, 
+                public auth: AuthService) { }
 
     dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
         if (isSameMonth(date, this.viewDate)) {
@@ -427,11 +433,48 @@ export class MyCalendarComponent implements OnInit {
             console.log(this.filteredEvents);
             this.sortByDate();
             this.loadServices();
+            this._caleventService.allAppointments = this.filteredEvents;
+            console.log("All Appointments");
+            console.log(this._caleventService.allAppointments);
             //call load events in load services
 //            this.loadevents();
             
         });
 
+        this.getAllClients();
+        this.getAllClientAppointments();
+    }
+
+    getAllClients(){
+        var x = this.clientService.getData();
+         x.snapshotChanges().subscribe(item => {
+            this.clientService.allClients = [];
+            item.forEach(element => {
+                var y = element.payload.toJSON();
+                y["$key"] = element.key;
+                this.clientService.allClients.push(y as Client);
+          
+     // console.log(y);
+            })
+            console.log("All Clients");
+            console.log(this.clientService.allClients);
+        });
+    }
+
+    getAllClientAppointments(){
+        var x = this.clientAppService.getData();
+         x.snapshotChanges().subscribe(item => {
+            this.clientAppService.allClientAppointments = [];
+            item.forEach(element => {
+                var y = element.payload.toJSON();
+                y["$key"] = element.key;
+                this.clientAppService.allClientAppointments.push(y as ClientAppointments);
+          
+     // console.log(y);
+            })
+            console.log("All Client Appointments: ");
+            console.log(this.clientAppService.allClientAppointments);
+        });
 
     }
 

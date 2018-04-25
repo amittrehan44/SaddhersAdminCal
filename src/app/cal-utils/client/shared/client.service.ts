@@ -7,6 +7,7 @@ export class ClientService {
 
   clientList: AngularFireList<any>;
   selectedClient: Client = new Client();
+  allClients: Client[];
 
   constructor(private firebase : AngularFireDatabase) { }
 

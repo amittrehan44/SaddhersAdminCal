@@ -156,8 +156,7 @@ constructor(private fb: FormBuilder,
       if (this.customerForm) {
             this.customerForm.reset();
         }
-
-    
+   
       this.clientService.selectedClient = client;
 
       if ( this.clientService.selectedClient.$key === null) {

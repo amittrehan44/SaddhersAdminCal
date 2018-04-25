@@ -80,6 +80,9 @@ export class CalEventsService {
     serviceList: AngularFireList<any>;
     optionsMultiselect: number[];
 
+    //All appointments
+   allAppointments: eventsAPI[];
+
     constructor(private _http: HttpClient, private firebase: AngularFireDatabase) { }
 
     /* getting data from firebase*/
