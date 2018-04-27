@@ -9,7 +9,12 @@ input.ng-invalid.ng-dirty{
 .card-header{
     background-color: #4da3ff;
     color: #fff;
-    font-size: 4em;
+    font-size: 1.3em;
     font-weight: bold;
+}
+
+.greenClass {
+    background-color: #fc8a96 !important;
+    text-align: left !important;
 }
 

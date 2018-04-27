@@ -99,6 +99,18 @@ constructor(private fb: FormBuilder,
 
     }
 
+    this.customerForm.patchValue({
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone:'',
+      landline: '',
+      age: '',
+      $key: null,
+      gender: ''
+
+    });  
+
   }
 
   save() {

@@ -32,16 +32,29 @@ export class ClientAppointmentsService {
     });
   }
 
+  //This function will either insert or delete from clientAppointments
   insertClientApp(clientKey: string, key: string) 
   {
     console.log(this.selectedClientApps);
     //var key = this.getClientAppKey(clientKey);
-    console.log("Inserting appoitntment to Key: "+key);
-    console.log("Inserting appoitntment to clientKey: "+clientKey);
+    console.log("Inserting/Deleting appoitntment to Key: "+key);
+    console.log("Inserting/Deleting appoitntment to clientKey: "+clientKey);
     this.clientAppointmentsList.update(key, {
       clientKey: clientKey,
       appointmentKeys: this.selectedClientApps
     });
+  }
+
+  deleteClientApp(clientKey: string, appKey: string){
+    var index = this.selectedClientApps.indexOf(appKey);
+      if (index > -1) {
+        this.selectedClientApps.splice(index, 1);
+      }
+      else{
+        return;
+      }
+
+    this.getClientAppKey(clientKey);
   }
 
   getClientAppKey(clientKey: string){

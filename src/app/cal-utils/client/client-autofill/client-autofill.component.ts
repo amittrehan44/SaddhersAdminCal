@@ -37,7 +37,7 @@ export class ClientAutofillComponent implements OnInit {
         this.clientList.push(y as Client);
         
       })
-      
+      console.log(this.clientList);
     });
 
 

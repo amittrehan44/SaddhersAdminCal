@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 
 <div class="card">
-  <div class="card-header">
+  <div class="card-header" [ngClass]="{greenClass: clientService.selectedClient.$key!=null}">
     {{ pageTitle }}
   </div>
 
@@ -157,8 +157,13 @@
               </div>
 
 
+            <!-- Age -->
+            <input 
+            type="hidden" 
+            formControlName="age" 
+            />
 
-              <div class="form-group"
+              <!-- <div class="form-group"
                   [ngClass]="{'has-error': (customerForm.get('age').touched || 
                                             customerForm.get('age').dirty) && 
                                             !customerForm.get('age').valid }">
@@ -176,8 +181,10 @@
                            
                      </span>
                   </div>
-              </div>
+              </div> -->
+             
               
+
               <!--<div class="form-group">
                   <div class="col-md-offset-1 col-md-8 checkbox" >
                       <label>
@@ -301,14 +308,25 @@
                                   [disabled]="!customerForm.valid">
                               Save
                           </button>
+
+                          <button class="btn btn-primary"
+                                  type="button"
+                                  [routerLink]="['/welcome']">
+                              Cancel
+                          </button>
+                          
                       </span>
                       
                   </div>
+                  
               </div>
+              
           </fieldset>
       </form>
   </div>
 </div>
+
+
 <!-- <br>Dirty: {{ customerForm.dirty }} 
 <br>Touched: {{ customerForm.touched }}
 <br>Valid: {{ customerForm.valid }}

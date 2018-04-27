@@ -51,7 +51,10 @@ export class AppointmentInputComponent implements OnInit {
 
     key: string = '';
 
-    constructor(public _caleventService: CalEventsService, private clientAppService: ClientAppointmentsService, public modal: NgbModal, private tostr: ToastrService) { }
+    constructor(public _caleventService: CalEventsService, 
+                private clientAppService: ClientAppointmentsService, 
+                public modal: NgbModal, 
+                private tostr: ToastrService) { }
 
     ngOnInit() {
         
@@ -94,6 +97,8 @@ export class AppointmentInputComponent implements OnInit {
         ];   
 */          
     }
+
+    
 
     //for service multiselect
     onChange(a: any) {
@@ -174,11 +179,18 @@ export class AppointmentInputComponent implements OnInit {
 
     onDelete(form: NgForm) {
         if (confirm('Are you sure to delete this record ?') == true) {
+           //Deleting from appointments
             this._caleventService.deleteAppointment(form.value.$key);
+           
+           //deleting from ClientAppointments
+           this.clientAppService.deleteClientApp(this._caleventService.selectedAppointment.clientKey, form.value.$key);
+
             this.resetForm(form);
 
             if (this.modalRef != null)
                 this.modalRef.close();
+
+            
         }
 
         this.tostr.warning("Deleted Successfully", "Appointment");

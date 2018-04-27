@@ -15,13 +15,13 @@
     <div class="col-md-8">
       <form class="example-form">
         <mat-form-field class="example-full-width">
-          <input type="text"  placeholder="Enter Cell Phone" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+          <input type="text"  placeholder="Enter Phone" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
           <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
             <mat-option *ngFor="let client of filteredList | async" [value]="client">
-              <span>{{client.phone}}</span> |
-              <span>{{ client.firstName }}</span> 
-              <span>{{ client.lastName }}</span> |
-              <span>Landline: {{client.landline}}</span>
+              <!-- <span>{{client.phone}}</span> | -->
+              <span>{{ client.firstName | uppercase }}</span> 
+              <span>{{ client.lastName | uppercase }}</span> |
+              <span>{{client.landline}}</span>
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>

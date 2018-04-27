@@ -32,7 +32,7 @@
                             </button>
                     </div>
                     <div >
-                            <span> <b>{{ _caleventService.selectedAppointment.firstName }} {{ _caleventService.selectedAppointment.lastName }}</b></span><br>
+                            <span> <b>{{ _caleventService.selectedAppointment.firstName | uppercase }} {{ _caleventService.selectedAppointment.lastName | uppercase }}</b></span><br>
                             <i class="fa fa-mobile" aria-hidden="true"></i>
                             <span> {{ _caleventService.selectedAppointment.phone }} </span>
                             <i class="fa fa-phone" aria-hidden="true"></i>
@@ -161,7 +161,7 @@
                         </button>
                 </div>
                 <div >
-                        <span> <b>{{ _caleventService.selectedAppointment.firstName }} {{ _caleventService.selectedAppointment.lastName }}</b></span><br>
+                        <span> <b>{{ _caleventService.selectedAppointment.firstName | uppercase }} {{ _caleventService.selectedAppointment.lastName | uppercase }}</b></span><br>
                         <i class="fa fa-mobile" aria-hidden="true"></i>
                         <span> {{ _caleventService.selectedAppointment.phone }} </span>
                         <i class="fa fa-phone" aria-hidden="true"></i>
@@ -169,8 +169,8 @@
                         <i class="fa fa-envelope-open" aria-hidden="true"></i>
                         <span> {{ _caleventService.selectedAppointment.email }} </span><br>
                         <span>Total Appointments: {{ clientAppService.selectedClientApps.length }} </span><br>
-                        <span>Total NoShows: {{ clientAppService.noShow }} </span><br>
-                        
+                        <!-- <span>Total NoShows: {{ clientAppService.noShow }} </span><br> -->
+                        <div *ngIf="clientAppService.noShow > 0" class="alert alert-danger" role="alert" >Total NoShows: {{ clientAppService.noShow }} </div><br>
                         
                         
                 </div>
