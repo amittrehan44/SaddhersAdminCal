@@ -5,13 +5,14 @@ import { CommonModule } from '@angular/common';
 import { ClientInputComponent } from './client-input/client-input.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import {MatButtonModule, MatFormFieldControl, MatCheckboxModule, MatAutocompleteModule, MatFormFieldModule, MatAutocomplete, MatInputModule} from '@angular/material';
+import {MatButtonModule, MatFormFieldControl, MatCheckboxModule, MatAutocompleteModule, MatFormFieldModule, MatAutocomplete, MatInputModule, MatTableModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NavbarComponent } from '../navbar/navbar.component';
 import { AppRoutingModule } from '../../app-routing.module';
 import { TextMaskModule } from 'angular2-text-mask';
 import { ClientAutofillComponent } from './client-autofill/client-autofill.component';
+import { ClientListComponent } from './client-list/client-list.component';
 
 @NgModule({
   imports: [
@@ -24,9 +25,10 @@ import { ClientAutofillComponent } from './client-autofill/client-autofill.compo
     BrowserAnimationsModule,
     MatAutocompleteModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatTableModule
   ],
-  declarations: [ClientInputComponent,  NavbarComponent, ClientAutofillComponent],
-  exports: [ClientInputComponent, NavbarComponent, ClientAutofillComponent, MatAutocompleteModule, MatFormFieldModule, MatInputModule]
+  declarations: [ClientInputComponent,  NavbarComponent, ClientAutofillComponent, ClientListComponent],
+  exports: [ClientInputComponent, NavbarComponent, ClientAutofillComponent, MatAutocompleteModule, MatFormFieldModule, MatInputModule, MatTableModule]
 })
 export class ClientModule { }

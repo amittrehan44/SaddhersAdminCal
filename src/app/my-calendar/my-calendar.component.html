@@ -35,8 +35,8 @@
                             <span> <b>{{ _caleventService.selectedAppointment.firstName | uppercase }} {{ _caleventService.selectedAppointment.lastName | uppercase }}</b></span><br>
                             <i class="fa fa-mobile" aria-hidden="true"></i>
                             <span> {{ _caleventService.selectedAppointment.phone }} </span>
-                            <i class="fa fa-phone" aria-hidden="true"></i>
-                            <span> {{ _caleventService.selectedAppointment.landline }} </span>
+                            <!-- <i class="fa fa-phone" aria-hidden="true"></i>
+                            <span> {{ _caleventService.selectedAppointment.landline }} </span> -->
                             <i class="fa fa-envelope-open" aria-hidden="true"></i>
                             <span> {{ _caleventService.selectedAppointment.email }} </span><br>
                             <span>Total Appointments: {{ clientAppService.selectedClientApps.length }} </span><br>
@@ -155,22 +155,24 @@
         -->
 
         <!-- <div  *ngIf="this._caleventService.selectedAppointment.firstName!=''" class="row"> -->
-        <div  *ngIf="this._caleventService.selectedAppointment.clientKey" class="row">       
+        <div  *ngIf="this._caleventService.selectedAppointment.firstName" class="row">       
                 <div class="col-md-1">
-                        <button type="button" class="btn btn-primary btn-circle btn-l" [routerLink]="['/clientEdit', _caleventService.selectedAppointment.clientKey]" (click)="close()"><i class="fa fa-pencil"></i>
+                        <button *ngIf="this._caleventService.selectedAppointment.clientKey" type="button" class="btn btn-primary btn-circle btn-l" [routerLink]="['/clientEdit', _caleventService.selectedAppointment.clientKey]" (click)="close()"><i class="fa fa-pencil"></i>
                         </button>
                 </div>
                 <div >
                         <span> <b>{{ _caleventService.selectedAppointment.firstName | uppercase }} {{ _caleventService.selectedAppointment.lastName | uppercase }}</b></span><br>
                         <i class="fa fa-mobile" aria-hidden="true"></i>
                         <span> {{ _caleventService.selectedAppointment.phone }} </span>
-                        <i class="fa fa-phone" aria-hidden="true"></i>
-                        <span> {{ _caleventService.selectedAppointment.landline }} </span>
+                        <!-- <i class="fa fa-phone" aria-hidden="true"></i>
+                        <span> {{ _caleventService.selectedAppointment.landline }} </span> -->
                         <i class="fa fa-envelope-open" aria-hidden="true"></i>
                         <span> {{ _caleventService.selectedAppointment.email }} </span><br>
-                        <span>Total Appointments: {{ clientAppService.selectedClientApps.length }} </span><br>
+                        <span *ngIf="this._caleventService.selectedAppointment.clientKey">Total Appointments: {{ clientAppService.selectedClientApps.length }} </span><br>
                         <!-- <span>Total NoShows: {{ clientAppService.noShow }} </span><br> -->
-                        <div *ngIf="clientAppService.noShow > 0" class="alert alert-danger" role="alert" >Total NoShows: {{ clientAppService.noShow }} </div><br>
+                        <div *ngIf="this._caleventService.selectedAppointment.clientKey"  class="alert alert-danger" role="alert" >
+                         <span *ngIf="clientAppService.noShow > 0">   Total NoShows: {{ clientAppService.noShow }}  </span> 
+                        </div><br>
                         
                         
                 </div>

@@ -39,7 +39,7 @@ pageTitle: string = 'Product Edit';
 constructor(private fb: FormBuilder, 
             private route: ActivatedRoute,
             private router: Router, 
-            private clientService: ClientService, 
+            public clientService: ClientService, 
             private clientAppService: ClientAppointmentsService, 
             private toastr: ToastrService) { }
 

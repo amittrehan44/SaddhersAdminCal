@@ -8,6 +8,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { AuthGuard } from './core/auth.guard';
 import { ChartsComponent } from './cal-utils/charts/charts.component'
 import { ClientInputComponent } from './cal-utils/client/client-input/client-input.component';
+import { ClientListComponent } from './cal-utils/client/client-list/client-list.component';
 import { ClientAutofillComponent} from './cal-utils/client/client-autofill/client-autofill.component';
 
 
@@ -17,6 +18,7 @@ const routes: Routes = [
     { path: 'charts', component: ChartsComponent, canActivate: [AuthGuard] },
     { path: 'login', component: LoginPageComponent },
     { path: 'clientEdit/:id', component: ClientInputComponent },
+    { path: 'clientList', component: ClientListComponent },
     { path: 'clientAutofill', component: ClientAutofillComponent },
     { path: '', redirectTo: 'welcome', pathMatch: 'full', canActivate: [AuthGuard] }
 

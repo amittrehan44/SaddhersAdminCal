@@ -51,7 +51,7 @@ export class ClientAutofillComponent implements OnInit {
       //Autofill using landline
       this.filteredList = this.myControl.valueChanges
       .pipe(startWith<string | Client>(''),
-      map(value => typeof value === 'string' ? value : value['landline']),
+      map(value => typeof value === 'string' ? value : value['phone']),
       map(state => state ? this.filteredClients(state) : this.clientList)
       );
 
@@ -75,12 +75,12 @@ export class ClientAutofillComponent implements OnInit {
     filteredClients(phone: any) {
       phone = '+1'+phone;
       return this.clientList.filter(state =>
-        state.landline.toLowerCase().indexOf(phone.toLowerCase()) === 0);
+        state.phone.toLowerCase().indexOf(phone.toLowerCase()) === 0);
     }
 
 
   displayFn(user?: Client): string | undefined {
-   return user ? user.landline : undefined;
+   return user ? user.phone : undefined;
  }
 
  onEdit(client: Client){

@@ -148,7 +148,7 @@
         </div>
 
         <div *ngIf="_caleventService.selectedAppointment.$key != null" class="form-group">
-            <div [ngClass]="{redClass1: _caleventService.selectedAppointment.noShow}" class="col-md-offset-1 col-md-8 checkbox" >
+            <div *ngIf="this._caleventService.selectedAppointment.clientKey" [ngClass]="{redClass1: _caleventService.selectedAppointment.noShow}" class="col-md-offset-1 col-md-8 checkbox" >
                 <label>
                     <input id="sendCatalogId"
                         type="checkbox"
