@@ -155,7 +155,7 @@ export class AppointmentInputComponent implements OnInit {
             this.clientAppService.selectedClientApps.push(k);
 
             //inserting created appointment in clientAppointments in firebase
-            this.clientAppService.getClientAppKey(this._caleventService.selectedAppointment.clientKey);
+            this.getClientAppKey(this._caleventService.selectedAppointment.clientKey);
            
         }
         else {
@@ -183,7 +183,7 @@ export class AppointmentInputComponent implements OnInit {
             this._caleventService.deleteAppointment(form.value.$key);
            
            //deleting from ClientAppointments
-           this.clientAppService.deleteClientApp(this._caleventService.selectedAppointment.clientKey, form.value.$key);
+           this.deleteClientApp(this._caleventService.selectedAppointment.clientKey, form.value.$key);
 
             this.resetForm(form);
 
@@ -234,4 +234,47 @@ export class AppointmentInputComponent implements OnInit {
             }
         }
     }
+
+    getClientAppKey(clientKey: string){
+        // var x = this.clientAppService.getData();
+        //   x.snapshotChanges().subscribe(item => {
+           
+        //     item.forEach(element => {
+        //       var y = element.payload.toJSON();
+        //       y["$key"] = element.key;
+        //       console.log(y["$key"]);
+        //       console.log(y["clientKey"]);
+        //       if(y["clientKey"]==clientKey){
+        //           console.log(y);  
+        //           this.clientAppService.insertClientApp(clientKey, y["$key"]);        
+        //           //return y["$key"];
+        //         }
+              
+        //     })
+            
+        //   });
+          //return null;
+
+          for (var y=0; y<this.clientAppService.allClientAppointments.length; y++){
+            console.log(this.clientAppService.allClientAppointments[y]["clientKey"]);
+            console.log(this.clientAppService.allClientAppointments[y]["$key"]);
+            if(this.clientAppService.allClientAppointments[y]["clientKey"]==clientKey){
+                this.clientAppService.insertClientApp(clientKey, this.clientAppService.allClientAppointments[y]["$key"]);   
+            }
+          }
+
+
+      }
+
+      deleteClientApp(clientKey: string, appKey: string){
+        var index = this.clientAppService.selectedClientApps.indexOf(appKey);
+          if (index > -1) {
+            this.clientAppService.selectedClientApps.splice(index, 1);
+          }
+          else{
+            return;
+          }
+    
+        this.getClientAppKey(clientKey);
+      }
 }

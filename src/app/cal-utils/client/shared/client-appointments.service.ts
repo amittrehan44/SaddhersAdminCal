@@ -45,38 +45,40 @@ export class ClientAppointmentsService {
     });
   }
 
-  deleteClientApp(clientKey: string, appKey: string){
-    var index = this.selectedClientApps.indexOf(appKey);
-      if (index > -1) {
-        this.selectedClientApps.splice(index, 1);
-      }
-      else{
-        return;
-      }
+  //Moving this to appointment input adure to defect 5/2
 
-    this.getClientAppKey(clientKey);
-  }
+  // deleteClientApp(clientKey: string, appKey: string){
+  //   var index = this.selectedClientApps.indexOf(appKey);
+  //     if (index > -1) {
+  //       this.selectedClientApps.splice(index, 1);
+  //     }
+  //     else{
+  //       return;
+  //     }
 
-  getClientAppKey(clientKey: string){
-    var x = this.getData();
-      x.snapshotChanges().subscribe(item => {
+  //   this.getClientAppKey(clientKey);
+  // }
+
+  // getClientAppKey(clientKey: string){
+  //   var x = this.getData();
+  //     x.snapshotChanges().subscribe(item => {
        
-        item.forEach(element => {
-          var y = element.payload.toJSON();
-          y["$key"] = element.key;
-          console.log(y["$key"]);
-          console.log(y["clientKey"]);
-          if(y["clientKey"]==clientKey){
-              console.log(y);  
-              this.insertClientApp(clientKey, y["$key"]);        
-              //return y["$key"];
-            }
+  //       item.forEach(element => {
+  //         var y = element.payload.toJSON();
+  //         y["$key"] = element.key;
+  //         console.log(y["$key"]);
+  //         console.log(y["clientKey"]);
+  //         if(y["clientKey"]==clientKey){
+  //             console.log(y);  
+  //             this.insertClientApp(clientKey, y["$key"]);        
+  //             //return y["$key"];
+  //           }
           
-        })
+  //       })
         
-      });
-      //return null;
-  }
+  //     });
+      
+  // }
 
 
   //Below Logic is to get details directly from data base

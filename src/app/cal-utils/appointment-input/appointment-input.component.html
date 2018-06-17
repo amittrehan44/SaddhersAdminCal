@@ -10,7 +10,7 @@
     <input type="hidden" name="clientKey" #clientKey="ngModel" [(ngModel)]="_caleventService.selectedAppointment.clientKey">
     
     <input type="hidden" class="form-control" name="firstName" #name="ngModel" [(ngModel)]="_caleventService.selectedAppointment.firstName" placeholder="First Name" required>
-    <input type="hidden" class="form-control" name="lastName" #name="ngModel" [(ngModel)]="_caleventService.selectedAppointment.lastName" placeholder="Last Name" required>
+    <input type="hidden" class="form-control" name="lastName" #name="ngModel" [(ngModel)]="_caleventService.selectedAppointment.lastName" placeholder="Last Name">
     <input type="hidden" class="form-control"  name="email" #email="ngModel" [(ngModel)]="_caleventService.selectedAppointment.email" placeholder="Email" />
     <input type="hidden" class="form-control" placeholder="+1 (xxx) xxx-xxxx" [textMask]="{mask: mask}" name="phone" #phone="ngModel" [(ngModel)]="_caleventService.selectedAppointment.phone" pattern="\+\d\d{10}"/>
     <input type="hidden" class="form-control" placeholder="+1 (xxx) xxx-xxxx" [textMask]="{mask: mask}" name="landline" #phone="ngModel" [(ngModel)]="_caleventService.selectedAppointment.landline" pattern="\+\d\d{10}"/>

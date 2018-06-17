@@ -170,8 +170,8 @@
                         <span> {{ _caleventService.selectedAppointment.email }} </span><br>
                         <span *ngIf="this._caleventService.selectedAppointment.clientKey">Total Appointments: {{ clientAppService.selectedClientApps.length }} </span><br>
                         <!-- <span>Total NoShows: {{ clientAppService.noShow }} </span><br> -->
-                        <div *ngIf="this._caleventService.selectedAppointment.clientKey"  class="alert alert-danger" role="alert" >
-                         <span *ngIf="clientAppService.noShow > 0">   Total NoShows: {{ clientAppService.noShow }}  </span> 
+                        <div *ngIf="this._caleventService.selectedAppointment.clientKey"   >
+                         <div *ngIf="clientAppService.noShow > 0" class="alert alert-danger" role="alert">   Total NoShows: {{ clientAppService.noShow }}  </div> 
                         </div><br>
                         
                         
