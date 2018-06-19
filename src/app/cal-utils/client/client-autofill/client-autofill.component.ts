@@ -22,9 +22,11 @@ export class ClientAutofillComponent implements OnInit {
   filteredList: Observable<Client[]>;
 
   mask: any[] = ['+', '1', /[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/];
+  clientNote: string;
 
-
-  constructor(private clientService: ClientService, private _caleventService: CalEventsService, private clientAppService: ClientAppointmentsService) { }
+  constructor(private clientService: ClientService, 
+              private _caleventService: CalEventsService, 
+              private clientAppService: ClientAppointmentsService) { }
 
   ngOnInit() {
 
@@ -98,6 +100,9 @@ export class ClientAutofillComponent implements OnInit {
   this._caleventService.selectedAppointment.landline = client.landline;
   this._caleventService.selectedAppointment.clientKey = client.$key;
   this._caleventService.selectedAppointment.gender = client.gender;
+
+  //get client notes
+  this.clientService.clientNote = client.notes;
   //get all appointments for selected client
   // if(this._caleventService.selectedAppointment.clientKey != null)
    //this.clientAppService.getClientAppointments(this._caleventService.selectedAppointment.clientKey);

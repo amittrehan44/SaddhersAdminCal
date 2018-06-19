@@ -11,7 +11,7 @@ import {ClientService} from '../shared/client.service';
 export class ClientListComponent implements OnInit {
 
   clientList: Client[];
-  displayedColumns = ['name', 'phone', 'email', 'gender', 'edit'];
+  displayedColumns = ['name', 'phone', 'email', 'notes', 'gender', 'edit'];
   dataSource = new MatTableDataSource();
 
   constructor(private clientService: ClientService) { }

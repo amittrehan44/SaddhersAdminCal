@@ -1,7 +1,9 @@
 import {
-    Component, OnInit, ChangeDetectionStrategy,
+    Component, OnInit, 
+    ChangeDetectionStrategy,
     ViewChild,
-    TemplateRef } from '@angular/core';
+    TemplateRef,
+    ChangeDetectorRef } from '@angular/core';
 
 import {
     startOfDay,
@@ -162,20 +164,27 @@ export class MyCalendarComponent implements OnInit {
                 public _caleventService: CalEventsService,
                 private clientService: ClientService,  
                 private clientAppService: ClientAppointmentsService, 
-                public auth: AuthService) { }
+                public auth: AuthService,
+                private cdr: ChangeDetectorRef) { }
 
-    dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
-        if (isSameMonth(date, this.viewDate)) {
-            if (
-                (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
-                events.length === 0
-            ) {
-                this.activeDayIsOpen = false;
-            } else {
-                this.activeDayIsOpen = true;
-                this.viewDate = date;
-            }
-        }
+    dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }, view: string): void {
+        
+        this.viewDate = date;
+                    //console.log(view);
+                    
+        if (isSameMonth(date, this.viewDate) && view == "month") {
+                        if (
+                            (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
+                            events.length === 0
+                        ) {
+                            this.activeDayIsOpen = false;
+                        } else {
+                            this.activeDayIsOpen = true;
+                            this.viewDate = date;
+                        }
+                    }
+            
+                    this.cdr.detectChanges();
     }
 
     eventTimesChanged({
@@ -239,6 +248,15 @@ export class MyCalendarComponent implements OnInit {
         this._caleventService._durationString1 = this.durationHrs.substring(0, 1) + ":" + this._tempMinsStr;
 
         this._caleventService.optionsMultiselect = event.meta.serviceOptionIds;
+
+        //get client notes
+        for(var i=0; i<this.clientService.allClients.length; i++){
+            if(this.clientService.allClients[i].$key == event.meta.clientKey){
+                console.log("Matchhh");
+                console.log(this.clientService.allClients[i].notes);
+                this.clientService.clientNote = this.clientService.allClients[i].notes;
+            }
+        }
     }
 
 

@@ -8,6 +8,7 @@ export class ClientService {
   clientList: AngularFireList<any>;
   selectedClient: Client = new Client();
   allClients: Client[];
+  clientNote: string;
 
   constructor(private firebase : AngularFireDatabase) { }
 
@@ -26,7 +27,8 @@ export class ClientService {
       landline: client.landline,
       email: client.email,
       age: client.age,
-      gender: client.gender
+      gender: client.gender,
+      notes: client.notes
     }).key;
   }
 
@@ -40,7 +42,8 @@ export class ClientService {
       landline: client.landline,
       email: client.email,
       age: client.age,
-      gender: client.gender
+      gender: client.gender,
+      notes: client.notes
     });
   }
 

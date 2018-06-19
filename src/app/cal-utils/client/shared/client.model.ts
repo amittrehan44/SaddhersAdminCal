@@ -7,4 +7,5 @@ export class Client {
     email: string;
     age: string;
     gender: string;
+    notes: string
 }

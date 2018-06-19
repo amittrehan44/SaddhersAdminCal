@@ -57,7 +57,8 @@ constructor(private fb: FormBuilder,
             landline: ['', [Validators.pattern('[0-9+]{12}')]],
             age: '',
             $key: '',
-            gender: ''
+            gender: '',
+            notes: '',
       });
 
       // Read the product Id from the route parameter
@@ -95,7 +96,8 @@ constructor(private fb: FormBuilder,
         landline: '',
         email: '',
         age: '',
-        gender: ''
+        gender: '',
+        notes: '',
 
     }
 
@@ -107,7 +109,8 @@ constructor(private fb: FormBuilder,
       landline: '',
       age: '',
       $key: null,
-      gender: ''
+      gender: '',
+      notes: ''
 
     });  
 
@@ -130,10 +133,18 @@ constructor(private fb: FormBuilder,
   }
 
   onDelete(key: string){
-    if(confirm('Are you sure you want to remove this record?')== true){
-      this.clientService.deleteClient(key);
-      this.toastr.warning('Deleted Successfully', 'Client Register');
+    if ( this.clientService.selectedClient.$key === null) {
+      this.router.navigate(['/welcome']);
+    } 
+    else {
+      if(confirm('Are you sure you want to remove this record?')== true){
+        this.clientService.deleteClient(key);
+        this.toastr.warning('Deleted Successfully', 'Client Register');
+        this.router.navigate(['/welcome']);
+      }
     }
+
+   
   }
 
 
@@ -168,6 +179,10 @@ constructor(private fb: FormBuilder,
       if (this.customerForm) {
             this.customerForm.reset();
         }
+
+        if(client.notes == undefined){
+          client.notes = '';
+        }
    
       this.clientService.selectedClient = client;
 
@@ -184,7 +199,8 @@ constructor(private fb: FormBuilder,
         landline: client.landline,
         age: client.age,
         $key: client.$key,
-        gender: client.gender
+        gender: client.gender,
+        notes: client.notes,
 
       });  
     }

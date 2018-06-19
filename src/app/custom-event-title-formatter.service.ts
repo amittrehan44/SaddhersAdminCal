@@ -12,21 +12,34 @@ export class CustomEventTitleFormatter extends CalendarEventTitleFormatter {
         return `<b>${new Intl.DateTimeFormat(this.locale, {
             hour: 'numeric',
             minute: 'numeric'
-        }).format(event.start)}</b> ${event.title} : ${event.meta.service} for ${event.meta.firstName} ${event.meta.lastName} ${event.meta.phone}  `;
+        }).format(event.start)} - ${new Intl.DateTimeFormat(this.locale, {
+            hour: 'numeric',
+            minute: 'numeric'
+        }).format(event.end)}</b> ${event.title} : ${event.meta.service} for ${event.meta.firstName} ${event.meta.lastName} ${event.meta.phone}  `;
     }
 
     week(event: CalendarEvent): string {
         return `<b>${new Intl.DateTimeFormat(this.locale, {
             hour: 'numeric',
             minute: 'numeric'
-        }).format(event.start)}</b> ${event.title} : ${event.meta.service} for ${event.meta.firstName} ${event.meta.lastName}  ${event.meta.phone}  `;
+        }).format(event.start)} - ${new Intl.DateTimeFormat(this.locale, {
+            hour: 'numeric',
+            minute: 'numeric'
+        }).format(event.end)}</b><br> 
+        ${event.meta.firstName} ${event.meta.lastName}  ${event.meta.phone} <br>
+         ${event.title} : ${event.meta.service}  `;
     }
 
     day(event: CalendarEvent): string {
         return `<b>${new Intl.DateTimeFormat(this.locale, {
             hour: 'numeric',
             minute: 'numeric'
-        }).format(event.start)}</b> ${event.title} : ${event.meta.service} for ${event.meta.firstName} ${event.meta.lastName}  ${event.meta.phone}  `;
+        }).format(event.start)} - ${new Intl.DateTimeFormat(this.locale, {
+            hour: 'numeric',
+            minute: 'numeric'
+        }).format(event.end)}</b><br> 
+        ${event.meta.firstName} ${event.meta.lastName}  ${event.meta.phone} <br>
+        ${event.meta.service} : ${event.title} `;
     }
 }
 

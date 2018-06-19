@@ -41,6 +41,7 @@
                             <span> {{ _caleventService.selectedAppointment.email }} </span><br>
                             <span>Total Appointments: {{ clientAppService.selectedClientApps.length }} </span><br>
                             <!-- <div  [ngClass]="{greenClass: clientAppService.noShow < 1, redClass: clientAppService.noShow > 0}">Total NoShows: {{ clientAppService.noShow }} </div><br> -->
+                            <div *ngIf="clientService.clientNote" class="alert alert-warning" role="alert" ><strong>Note: </strong> {{ clientService.clientNote }} </div><br>
                             <div *ngIf="clientAppService.noShow > 0" class="alert alert-danger" role="alert" >Total NoShows: {{ clientAppService.noShow }} </div><br>
                     </div>
                     
@@ -171,7 +172,8 @@
                         <span *ngIf="this._caleventService.selectedAppointment.clientKey">Total Appointments: {{ clientAppService.selectedClientApps.length }} </span><br>
                         <!-- <span>Total NoShows: {{ clientAppService.noShow }} </span><br> -->
                         <div *ngIf="this._caleventService.selectedAppointment.clientKey"   >
-                         <div *ngIf="clientAppService.noShow > 0" class="alert alert-danger" role="alert">   Total NoShows: {{ clientAppService.noShow }}  </div> 
+                            <div *ngIf="clientService.clientNote" class="alert alert-warning" role="alert" ><strong>Note: </strong> {{ clientService.clientNote }} </div><br>
+                            <div *ngIf="clientAppService.noShow > 0" class="alert alert-danger" role="alert">   Total NoShows: {{ clientAppService.noShow }}  </div> 
                         </div><br>
                         
                         
@@ -247,7 +249,7 @@
                                      [events]="events"
                                      [refresh]="refresh"
                                      [activeDayIsOpen]="activeDayIsOpen"
-                                     (dayClicked)="dayClicked($event.day)"
+                                     (dayClicked)="dayClicked($event.day, 'month'); view = 'day' "
                                      (eventClicked)="handleEvent('Clicked', $event.event)"
                                      (eventTimesChanged)="eventTimesChanged($event)"
                                      [cellTemplate]="monthCellTemplate"
@@ -257,6 +259,7 @@
                                     [viewDate]="viewDate"
                                     [events]="events"
                                     [refresh]="refresh"
+                                    (dayHeaderClicked)="dayClicked($event.day, 'week'); view = 'day'"
                                     (eventClicked)="handleEvent('Clicked', $event.event)"
                                     (eventTimesChanged)="eventTimesChanged($event)"
                                     [headerTemplate]="weekHeaderTemplate">
@@ -268,8 +271,8 @@
                                    (eventClicked)="handleEvent('Clicked', $event.event)"
                                    (eventTimesChanged)="eventTimesChanged($event)"
                                    [hourSegments]="4"
-                                   [dayStartHour]="5"
-                                    [dayEndHour]="21"
+                                   [dayStartHour]="9"
+                                    [dayEndHour]="19"
                                    [hourSegmentTemplate]="dayHourSegmentTemplate">
             </mwl-calendar-day-view>
         </div>

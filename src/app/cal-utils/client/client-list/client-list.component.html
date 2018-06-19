@@ -40,6 +40,11 @@
       <mat-cell *matCellDef="let element"> {{element.gender}} </mat-cell>
     </ng-container>
 
+    <!-- Notes Column -->
+    <ng-container matColumnDef="notes">
+        <mat-header-cell *matHeaderCellDef> Notes </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.notes}} </mat-cell>
+      </ng-container>
 
     <!-- Symbol Column -->
     <ng-container matColumnDef="edit">
