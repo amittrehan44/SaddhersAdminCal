@@ -5,6 +5,7 @@ import { Client } from './client.model';
 @Injectable()
 export class ClientService {
 
+    
   clientList: AngularFireList<any>;
   selectedClient: Client = new Client();
   allClients: Client[];
@@ -49,5 +50,13 @@ export class ClientService {
 
   deleteClient($key: string){
     this.clientList.remove($key);
+  }
+
+  //This method is used to update client notes from appointment input update
+  updateClientNotes(clientKey: string, clientNotes: string) {
+    this.clientList.update( clientKey,
+      {
+      notes: clientNotes
+    });
   }
 }

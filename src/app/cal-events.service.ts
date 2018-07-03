@@ -6,6 +6,7 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
+import {Client} from './cal-utils/client/shared/client.model';
 
 
 
@@ -49,6 +50,8 @@ const colors: any = {
 
 @Injectable()
 export class CalEventsService {
+  
+  
     private _eventUrl = './assets/api/events.json';
     private _productUrl = './assets/api/products.json';
 
@@ -146,6 +149,18 @@ export class CalEventsService {
             noShow: appointment.noShow
         })
     }
+    updatePreviousAppointment(appointmentKey: any, client: Client): any {
+        this.appointmentList.update(appointmentKey, {
+            firstName: client.firstName,
+            lastName: client.lastName,
+            phone: client.phone,
+            gender: client.gender,
+            email: client.email,
+            landline: client.landline
+        })
+      }
+
+    
    
 /* 
 Instead of observable CalenderEvent we are passing data with eventsAPI so comment below 

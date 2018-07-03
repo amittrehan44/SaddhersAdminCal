@@ -8,8 +8,8 @@ import 'rxjs/add/operator/debounceTime';
 import {Client} from '../shared/client.model';
 import {ClientService} from '../shared/client.service';
 import {ClientAppointmentsService} from '../shared/client-appointments.service';
-
-
+import {CalEventsService} from '../../../cal-events.service';
+import {eventsAPI} from '../../../app.component'
 
 @Component({
   selector: 'app-client-input',
@@ -41,7 +41,8 @@ constructor(private fb: FormBuilder,
             private router: Router, 
             public clientService: ClientService, 
             private clientAppService: ClientAppointmentsService, 
-            private toastr: ToastrService) { }
+            private toastr: ToastrService,
+            public _caleventService: CalEventsService,) { }
 
 
   ngOnInit() {
@@ -126,10 +127,25 @@ constructor(private fb: FormBuilder,
     }
     else{
       this.clientService.updateClient(this.clientService.selectedClient);
+
+      //update previus appointment of this client
+      this.updatePreviousAppointments(this.clientService.selectedClient);
+      
     }
      this.resetForm(this.customerForm);
      this.router.navigate(['/welcome']);
      this.toastr.success('Submitted Succcessfully', 'Client');
+  }
+
+  updatePreviousAppointments(client: Client) {
+
+    console.log(client);
+    console.log(this._caleventService.allAppointments);
+    for(var i=0; i<this._caleventService.allAppointments.length; i++){
+      if(client.$key == this._caleventService.allAppointments[i].clientKey){
+        this._caleventService.updatePreviousAppointment(this._caleventService.allAppointments[i].$key, client);
+      }
+    } 
   }
 
   onDelete(key: string){

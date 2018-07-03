@@ -42,7 +42,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       MyCalendarModule,
       AppRoutingModule,
       CoreModule,
-      ToastrModule.forRoot(), // ToastrModule added
+      ToastrModule.forRoot({
+        timeOut: 800,
+        positionClass: 'toast-top-center',
+        preventDuplicates: true,
+      }), // ToastrModule added
   ],
   providers: [AuthGuard],
   exports: [AppComponent

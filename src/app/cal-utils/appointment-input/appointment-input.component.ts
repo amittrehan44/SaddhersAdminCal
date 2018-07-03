@@ -23,6 +23,7 @@ import {ToastrService} from 'ngx-toastr';
 
 import {FormControl} from '@angular/forms';
 import {ClientAppointmentsService} from '../client/shared/client-appointments.service';
+import {ClientService} from '../client/shared/client.service';
 
 
 
@@ -52,7 +53,8 @@ export class AppointmentInputComponent implements OnInit {
     key: string = '';
 
     constructor(public _caleventService: CalEventsService, 
-                private clientAppService: ClientAppointmentsService, 
+                private clientAppService: ClientAppointmentsService,
+                public clientService: ClientService, 
                 public modal: NgbModal, 
                 private tostr: ToastrService) { }
 
@@ -139,7 +141,7 @@ export class AppointmentInputComponent implements OnInit {
             noShow: false,
             clientKey: null
         }
-        this._caleventService.durationString = '0:15';
+        this._caleventService.durationString = '0:30';
         
     }
 
@@ -160,6 +162,11 @@ export class AppointmentInputComponent implements OnInit {
         }
         else {
             this._caleventService.updateAppointment(form.value);
+            if(form.value.noShow){
+                //console.log(form.value);
+                this.clientService.updateClientNotes(form.value.clientKey, form.value.clientNotes);
+            }
+            //this.clientService.updateClientNotes();
             console.log("On Update: ");
             console.log(form.value);
             this.closeModal.emit('update');
