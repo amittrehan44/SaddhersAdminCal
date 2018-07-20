@@ -24,6 +24,7 @@ import{ ClientAppointmentsService } from '../cal-utils/client/shared/client-appo
 
 import { CalendarEventTitleFormatter} from 'angular-calendar';
 import { CustomEventTitleFormatter } from './../custom-event-title-formatter.service';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 
 export class CustomDateFormatter extends CalendarNativeDateFormatter {
@@ -57,8 +58,8 @@ export class CustomDateFormatter extends CalendarNativeDateFormatter {
       CalendarModule,
       AppRoutingModule
   ],
-    declarations: [MyCalendarComponent],
-    exports: [MyCalendarComponent
+    declarations: [MyCalendarComponent, LoadingSpinnerComponent],
+    exports: [MyCalendarComponent, LoadingSpinnerComponent
 
     ],
     providers: [CalEventsService, ClientService, ClientAppointmentsService,

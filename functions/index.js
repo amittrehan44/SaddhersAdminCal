@@ -62,70 +62,74 @@ exports.helloworld = functions.database
 */
 
 //send sms on Create start time
-exports.createAppointment = functions.database
-       .ref('/appointments/{key}/start')
-       .onCreate((change, context) => {
-           const orderKey = context.params.key
-           return admin.database()
-                       .ref(`/appointments/${orderKey}`)
-                       .once('value')
-                       .then(snapshot => snapshot.val())
-                       .then(appointment => {
-                           const name = appointment.firstName
-                           const start = DisplayCurrentTime(appointment.start)
-                           const phoneNumber = appointment.phone
-                           console.log('Creating appointment for: ' + name +  ', on: ' + start )
-                           if (!validE164(phoneNumber)) {
-                               throw new Error('number must be E164 format!')
-                           }
-                           const textMessage = {
-                               //body: `Hello ${name}, you have an Appointment on ${start} - Saddhers`,
-                               body: `You have booked an Appointment on ${start} - Saddher's Hair & Beauty Salon. If you need to reschedule please call 604-746-4786`,
-                               //to: +17787792744,
-                               to: phoneNumber,  // Text to this number
-                               from: twilioNumber // From a valid Twilio number
-                           }
-                           console.log('Sending messge to' + name + 'on phone number' + phoneNumber + 'on ' + start )
-                          return client.messages.create(textMessage).then(message => console.log(message.sid, 'success'))
-                                                                     .catch(err => console.log(err))
+
+//going to comment below as saddher do not want sms on create
+// exports.createAppointment = functions.database
+//        .ref('/appointments/{key}/start')
+//        .onCreate((change, context) => {
+//            const orderKey = context.params.key
+//            return admin.database()
+//                        .ref(`/appointments/${orderKey}`)
+//                        .once('value')
+//                        .then(snapshot => snapshot.val())
+//                        .then(appointment => {
+//                            const name = appointment.firstName
+//                            const start = DisplayCurrentTime(appointment.start)
+//                            const phoneNumber = appointment.phone
+//                            console.log('Creating appointment for: ' + name +  ', on: ' + start )
+//                            if (!validE164(phoneNumber)) {
+//                                throw new Error('number must be E164 format!')
+//                            }
+//                            const textMessage = {
+//                                //body: `Hello ${name}, you have an Appointment on ${start} - Saddhers`,
+//                                body: `You have booked an Appointment on ${start} - Saddher's Hair & Beauty Salon. If you need to reschedule please call 604-746-4786`,
+//                                //to: +17787792744,
+//                                to: phoneNumber,  // Text to this number
+//                                from: twilioNumber // From a valid Twilio number
+//                            }
+//                            console.log('Sending messge to' + name + 'on phone number' + phoneNumber + 'on ' + start )
+//                           return client.messages.create(textMessage).then(message => console.log(message.sid, 'success'))
+//                                                                      .catch(err => console.log(err))
                           
-                       })
+//                        })
                        
-       });
+//        });
 
 
 
 //send sms on update start time
-exports.textStatus = functions.database
-       .ref('/appointments/{key}/start')
-       .onUpdate((change, context) => {
-           const orderKey = context.params.key
-           return admin.database()
-                       .ref(`/appointments/${orderKey}`)
-                       .once('value')
-                       .then(snapshot => snapshot.val())
-                       .then(appointment => {
-                           const name = appointment.firstName
-                           const start = DisplayCurrentTime(appointment.start)
-                           const phoneNumber = appointment.phone
-                           console.log('Updating appointment for: ' + name +  ', on: ' + start )
-                           if (!validE164(phoneNumber)) {
-                               throw new Error('number must be E164 format!')
-                           }
-                           const textMessage = {
-                               //body: `Hello ${name}, you have an Appointment on ${start} - Saddhers`,
-                               body: `You have booked an Appointment on ${start} - Saddher's Hair & Beauty Salon. If you need to reschedule please call 604-746-4786`,
-                               //to: +17787792744,
-                               to: phoneNumber,  // Text to this number
-                               from: twilioNumber // From a valid Twilio number
-                           }
-                           console.log('Sending messge to' + name + 'on phone number' + phoneNumber + 'on ' + start )
-                          return client.messages.create(textMessage).then(message => console.log(message.sid, 'success'))
-                                                                     .catch(err => console.log(err))
+
+//going to comment below as saddher do not want sms on update
+// exports.textStatus = functions.database
+//        .ref('/appointments/{key}/start')
+//        .onUpdate((change, context) => {
+//            const orderKey = context.params.key
+//            return admin.database()
+//                        .ref(`/appointments/${orderKey}`)
+//                        .once('value')
+//                        .then(snapshot => snapshot.val())
+//                        .then(appointment => {
+//                            const name = appointment.firstName
+//                            const start = DisplayCurrentTime(appointment.start)
+//                            const phoneNumber = appointment.phone
+//                            console.log('Updating appointment for: ' + name +  ', on: ' + start )
+//                            if (!validE164(phoneNumber)) {
+//                                throw new Error('number must be E164 format!')
+//                            }
+//                            const textMessage = {
+//                                //body: `Hello ${name}, you have an Appointment on ${start} - Saddhers`,
+//                                body: `You have booked an Appointment on ${start} - Saddher's Hair & Beauty Salon. If you need to reschedule please call 604-746-4786`,
+//                                //to: +17787792744,
+//                                to: phoneNumber,  // Text to this number
+//                                from: twilioNumber // From a valid Twilio number
+//                            }
+//                            console.log('Sending messge to' + name + 'on phone number' + phoneNumber + 'on ' + start )
+//                           return client.messages.create(textMessage).then(message => console.log(message.sid, 'success'))
+//                                                                      .catch(err => console.log(err))
                           
-                       })
+//                        })
                        
-       });
+//        });
 
 const ref = admin.database().ref()
 //send sms daily at 6PM
@@ -157,12 +161,12 @@ exports.dailySMSReminder = functions.https.onRequest((req, res) => {
     // change time in PST
     currentDate.setHours(currentDate.getHours() - 8)
 
-    //Add number of hours to the point when client wants to send reminders
-    // Example if at 6PM then and 6 hours to current date
-    currentDate.setHours(currentDate.getHours() + 7)
+    //Add number of hours to change date or to the point when client wants to send reminders
+    // Example if at 6PM then and 6 hours to current date to make it next date
+    currentDate.setHours(currentDate.getHours() + 14)
     const getDate = currentDate.toDateString();
 
-    const names = []
+    // const names = []
 
     ref.child('appointments').once('value')
     .then(snap => {
@@ -170,28 +174,31 @@ exports.dailySMSReminder = functions.https.onRequest((req, res) => {
             const name = childSnap.val().firstName
             const start1 = childSnap.val().start
             var date = new Date(start1)
+            // change time in PST 
             date.setHours(date.getHours() - 8)
             const getStartDate = date.toDateString()
 
-            const start = DisplayCurrentTime(childSnap.val().start)
-            const phoneNumber1 = childSnap.val().phone
+            
 
             if (getStartDate == getDate) {
-                names.push(name)
+                // names.push(name)
+
+                const start = DisplayCurrentTime(childSnap.val().start)
+                const phoneNumber1 = childSnap.val().phone
                 if (!validE164(phoneNumber1)) {
                     throw new Error('number must be E164 format!')
                 }
 
                 const textMessage = {
-                    body: `You have an Appointment on ${start} - Saddher's`,
+                    body: `You have an Appointment on ${start} - Saddher's. If you need to reschedule please call 604-746-4786`,
                     //to: +17787792744,
                     to: phoneNumber1,  // Text to this number
                     from: twilioNumber // From a valid Twilio number
                 }
                 console.log('Sending messge to ' + name + ' on phone number' + phoneNumber1 + 'on ' + start)
-               /*  client.messages.create(textMessage).then(message => console.log(message.sid, 'success'))
+                 client.messages.create(textMessage).then(message => console.log(message.sid, 'success'))
                                                           .catch(err => console.log(err))
-                */
+                
             }
         })
     }).then(() => {
