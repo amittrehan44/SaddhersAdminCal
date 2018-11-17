@@ -15,7 +15,7 @@
     <div class="col-md-8">
       <form class="example-form">
         <mat-form-field class="example-full-width">
-          <input type="text"  placeholder="Enter Phone" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+          <input type="text"  placeholder="Enter Name or Phone" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
           <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
             <mat-option *ngFor="let client of filteredList | async" [value]="client">
               <!-- <span>{{client.phone}}</span> | -->

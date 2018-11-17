@@ -74,11 +74,27 @@ export class ClientAutofillComponent implements OnInit {
   //   return user ? user.firstName : undefined;
   // }
 
-    filteredClients(phone: any) {
-      phone = '+1'+phone;
+  //return phone if number and firstname if not a numner
+  filteredClients(phone: any) {
+    console.log();
+
+    if(isNaN(phone)){
       return this.clientList.filter(state =>
+      state.firstName.toLowerCase().indexOf(phone.toLowerCase()) === 0);
+    }
+    else{
+        phone = '+1'+phone;
+        return this.clientList.filter(state =>
         state.phone.toLowerCase().indexOf(phone.toLowerCase()) === 0);
     }
+  }
+
+    // filteredClients(phone: any) {
+    //   console.log(isNaN(phone));
+    //   phone = '+1'+phone;
+    //   return this.clientList.filter(state =>
+    //     state.phone.toLowerCase().indexOf(phone.toLowerCase()) === 0);
+    // }
 
 
   displayFn(user?: Client): string | undefined {

@@ -104,31 +104,39 @@ exports.helloworld = functions.database
 //        .ref('/appointments/{key}/start')
 //        .onUpdate((change, context) => {
 //            const orderKey = context.params.key
+//            var phoneNumber = '';
+//            var name = '';
+//            var startDate = '';
+//            //var start = '';
 //            return admin.database()
 //                        .ref(`/appointments/${orderKey}`)
 //                        .once('value')
 //                        .then(snapshot => snapshot.val())
 //                        .then(appointment => {
-//                            const name = appointment.firstName
-//                            const start = DisplayCurrentTime(appointment.start)
-//                            const phoneNumber = appointment.phone
-//                            console.log('Updating appointment for: ' + name +  ', on: ' + start )
-//                            if (!validE164(phoneNumber)) {
-//                                throw new Error('number must be E164 format!')
-//                            }
-//                            const textMessage = {
-//                                //body: `Hello ${name}, you have an Appointment on ${start} - Saddhers`,
-//                                body: `You have booked an Appointment on ${start} - Saddher's Hair & Beauty Salon. If you need to reschedule please call 604-746-4786`,
-//                                //to: +17787792744,
-//                                to: phoneNumber,  // Text to this number
-//                                from: twilioNumber // From a valid Twilio number
-//                            }
-//                            console.log('Sending messge to' + name + 'on phone number' + phoneNumber + 'on ' + start )
-//                           return client.messages.create(textMessage).then(message => console.log(message.sid, 'success'))
-//                                                                      .catch(err => console.log(err))
-                          
-//                        })
-                       
+//                             name = appointment.firstName
+//                             phoneNumber = appointment.phone
+//                             startDate= appointment.start  
+//                             if (!validE164(phoneNumber)) {
+//                                 throw new Error('number must be E164 format!')
+//                             }
+//                             return DisplayCurrentTime(appointment.start);
+                            
+//                        }).then(start=>{
+//                         console.log('Updating appointment for: ' + name +  ', on: ' + start );
+//                         const textMessage = {
+//                             //body: `Hello ${name}, you have an Appointment on ${start} - Saddhers`,
+//                             body: `You have booked an Appointment on ${start} - Saddher's Hair & Beauty Salon. If you need to reschedule please call 604-746-4786`,
+//                             //to: +17787792744,
+//                             to: phoneNumber,  // Text to this number
+//                             from: twilioNumber // From a valid Twilio number
+//                         }
+//                         console.log('Sending messge to' + name + 'on phone number' + phoneNumber + 'on ' + start )
+//                      //   return client.messages.create(textMessage).then(message => console.log(message.sid, 'success'))
+//                      //                                              .catch(err => console.log(err))
+                      
+                    
+//                     })
+    
 //        });
 
 const ref = admin.database().ref()
@@ -155,6 +163,9 @@ const ref = admin.database().ref()
 })
 
 */
+
+
+
 
 exports.dailySMSReminder = functions.https.onRequest((req, res) => {
     var currentDate = new Date()
@@ -196,8 +207,10 @@ exports.dailySMSReminder = functions.https.onRequest((req, res) => {
                     from: twilioNumber // From a valid Twilio number
                 }
                 console.log('Sending messge to ' + name + ' on phone number' + phoneNumber1 + 'on ' + start)
-                 client.messages.create(textMessage).then(message => console.log(message.sid, 'success'))
-                                                          .catch(err => console.log(err))
+                if(phoneNumber1 != "+11111111111"){
+                    client.messages.create(textMessage).then(message => console.log(message.sid, 'success'))
+                    .catch(err => console.log(err))
+                 }
                 
             }
         })
@@ -211,66 +224,66 @@ exports.dailySMSReminder = functions.https.onRequest((req, res) => {
 });
 
 
-exports.everyMinuteReminder = functions.https.onRequest((req, res) => {
-    var currentDate = new Date()
-    // change time in PST
-   // currentDate.setHours(currentDate.getHours() - 7)
+// exports.everyMinuteReminder = functions.https.onRequest((req, res) => {
+//     var currentDate = new Date()
+//     // change time in PST
+//    // currentDate.setHours(currentDate.getHours() - 7)
 
-    //Add number of hours to the point when client wants to send reminders
-    // Example if at 6PM then add 6 hours to current date
-    currentDate.setHours(currentDate.getHours() + 1)
+//     //Add number of hours to the point when client wants to send reminders
+//     // Example if at 6PM then add 6 hours to current date
+//     currentDate.setHours(currentDate.getHours() + 1)
    
-    const getDate = currentDate.toDateString();
-    const getHour = currentDate.getHours();
-    const getMinute = currentDate.getMinutes();
+//     const getDate = currentDate.toDateString();
+//     const getHour = currentDate.getHours();
+//     const getMinute = currentDate.getMinutes();
 
     
 
 
-   // const names = []
+//    // const names = []
 
-    ref.child('appointments').once('value')
-    .then(snap => {
-        snap.forEach(childSnap => {
-            const name = childSnap.val().firstName
-            const start1 = childSnap.val().start
-            var date = new Date(start1)
-            //date.setHours(date.getHours() - 7)
-            const getStartDate = date.toDateString()
-            const getStartHour = date.getHours();
-            const getStartMinute = date.getMinutes();
+//     ref.child('appointments').once('value')
+//     .then(snap => {
+//         snap.forEach(childSnap => {
+//             const name = childSnap.val().firstName
+//             const start1 = childSnap.val().start
+//             var date = new Date(start1)
+//             //date.setHours(date.getHours() - 7)
+//             const getStartDate = date.toDateString()
+//             const getStartHour = date.getHours();
+//             const getStartMinute = date.getMinutes();
             
             
             
 
-            if (getStartDate == getDate && getStartHour == getHour && getStartMinute == getMinute) {
-               // names.push(name)
-                const start = DisplayCurrentTime(childSnap.val().start)
-                const phoneNumber1 = childSnap.val().phone
-                if (!validE164(phoneNumber1)) {
-                    throw new Error('number must be E164 format!')
-                }
+//             if (getStartDate == getDate && getStartHour == getHour && getStartMinute == getMinute) {
+//                // names.push(name)
+//                 const start = DisplayCurrentTime(childSnap.val().start)
+//                 const phoneNumber1 = childSnap.val().phone
+//                 if (!validE164(phoneNumber1)) {
+//                     throw new Error('number must be E164 format!')
+//                 }
 
-                const textMessage = {
-                    body: `You have an Appointment on ${start} - Saddhers`,
-                    //to: +17787792744,
-                    to: phoneNumber1,  // Text to this number
-                    from: twilioNumber // From a valid Twilio number
-                }
-                console.log('Sending messge to ' + name + ' on phone number' + phoneNumber1 + 'on ' + start)
-                //   client.messages.create(textMessage).then(message => console.log(message.sid, 'success'))
-                //                                           .catch(err => console.log(err))
+//                 const textMessage = {
+//                     body: `You have an Appointment on ${start} - Saddhers`,
+//                     //to: +17787792744,
+//                     to: phoneNumber1,  // Text to this number
+//                     from: twilioNumber // From a valid Twilio number
+//                 }
+//                 console.log('Sending messge to ' + name + ' on phone number' + phoneNumber1 + 'on ' + start)
+//                 //   client.messages.create(textMessage).then(message => console.log(message.sid, 'success'))
+//                 //                                           .catch(err => console.log(err))
                 
-            }
-        })
-    }).then(() => {
-            res.send('SMS Sent')
-            })
-            .catch(error => {
-                res.send(error)
-            })
+//             }
+//         })
+//     }).then(() => {
+//             res.send('SMS Sent')
+//             })
+//             .catch(error => {
+//                 res.send(error)
+//             })
 
-});
+// });
 
 
 exports.hourlySMSReminder = functions.https.onRequest((req, res) => {
@@ -328,9 +341,10 @@ exports.hourlySMSReminder = functions.https.onRequest((req, res) => {
                     from: twilioNumber // From a valid Twilio number
                 }
                 console.log('Sending messge to ' + name + ' on phone number' + phoneNumber1 + 'on ' + start)
+                if(phoneNumber1 != "+11111111111"){
                   client.messages.create(textMessage).then(message => console.log(message.sid, 'success'))
                                                           .catch(err => console.log(err))
-                
+                }
             }
         })
     }).then(() => {
@@ -342,9 +356,7 @@ exports.hourlySMSReminder = functions.https.onRequest((req, res) => {
 
 });
 
-
-
-
+    
 
 
 /// Validate E164 format
@@ -368,13 +380,13 @@ function validE164(num) {
 // }
 
 
-// implementing daylight 
-//return date and time
+
+
 function DisplayCurrentTime(date1) {
     
 
-    //console.log(date1.substring(35, 56));
-    var dayLightHours = 7;
+    console.log(date1.substring(35, 56));
+    var dayLightHours = 0;
     if (date1.substring(35, 56) == "Pacific Daylight Time") {
 
         dayLightHours = 7;
@@ -387,11 +399,12 @@ function DisplayCurrentTime(date1) {
     //console.log(dayLightHours);
     //console.log(date1);
     var date = new Date(date1);
-    console.log(date);
+    //console.log(date);
     //Daylight Saving Changes
-	////for PST nov to march - 8 and for PDT mar to nov -7
+    ////for PST nov to march - 8 and for PDT mar to nov -7
+    //console.log(date.getHours());
     date.setHours(date.getHours() - dayLightHours);
-   // console.log(date);
+    //console.log(date);
     var getDate = date.toDateString();
     //console.log(getDate);
     var hours = date.getHours() > 12 ? date.getHours() - 12 : date.getHours();
