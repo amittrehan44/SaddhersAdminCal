@@ -8,6 +8,11 @@ import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firesto
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap'
 
+//after breaking changes
+import { switchMap, map } from 'rxjs/operators'
+import 'rxjs/add/observable/empty'
+import { of } from 'rxjs'
+
 interface User {
     uid: string;
     email: string;
@@ -32,7 +37,8 @@ export class AuthService {
                 if (user) {
                     return this.afs.doc<User>(`users/${user.uid}`).valueChanges()
                 } else {
-                    return Observable.of(null)
+                    return of(null)
+                    //return Observable.of(null)
                 }
             })
     }

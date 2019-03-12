@@ -10,7 +10,7 @@ import { DateTimePickerComponent } from './date-time-picker.component';
 import { CalendarHeaderComponent } from './calendar-header.component';
 import { CalContextmenuComponent } from './cal-contextmenu/cal-contextmenu.component';
 import { AppModule } from './../app.module';
-import { ContextMenuModule } from  'ngx-contextmenu/lib';
+import { ContextMenuModule } from  'ngx-contextmenu';
 import { AppointmentInputComponent } from './appointment-input/appointment-input.component';
 import { AppointmentListComponent } from './appointment-list/appointment-list.component';
 import { AppointmentTodayComponent } from './appointment-today/appointment-today.component';
@@ -22,6 +22,8 @@ import { Services } from './services.model';
 import { ChartsComponent } from './charts/charts.component';
 import { ChartsModule as Ng2Charts } from 'ng2-charts';
 import { ClientModule } from './client/client.module';
+
+import { FlatpickrModule } from 'angularx-flatpickr';
 
 
 @NgModule({
@@ -36,7 +38,7 @@ import { ClientModule } from './client/client.module';
           autoFocus: true,
            useBootstrap4: true,
       }),
-      
+      FlatpickrModule.forRoot(),
       TextMaskModule,
       MultiselectDropdownModule,
       Ng2Charts,

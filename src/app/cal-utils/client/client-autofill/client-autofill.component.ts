@@ -39,7 +39,7 @@ export class ClientAutofillComponent implements OnInit {
         this.clientList.push(y as Client);
         
       })
-      console.log(this.clientList);
+      //console.log(this.clientList);
     });
 
 
@@ -103,12 +103,11 @@ export class ClientAutofillComponent implements OnInit {
 
  onEdit(client: Client){
    
-  console.log("On Edit");
-  console.log(client);
-  console.log(client.$key);
+  // console.log("On Edit");
+  // console.log(client);
+  // console.log(client.$key);
   
   if(client.$key != null || client.$key != undefined){
-    console.log("yohoo");
   this._caleventService.selectedAppointment.firstName = client.firstName;
   this._caleventService.selectedAppointment.lastName = client.lastName;
   this._caleventService.selectedAppointment.email = client.email;

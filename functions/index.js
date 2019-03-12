@@ -209,7 +209,10 @@ exports.dailySMSReminder = functions.https.onRequest((req, res) => {
                 console.log('Sending messge to ' + name + ' on phone number' + phoneNumber1 + 'on ' + start)
                 if(phoneNumber1 != "+11111111111"){
                     client.messages.create(textMessage).then(message => console.log(message.sid, 'success'))
-                    .catch(err => console.log(err))
+                    .catch(err => {
+                        console.log(err);
+                        
+                    })
                  }
                 
             }
@@ -420,3 +423,42 @@ function DisplayCurrentTime(date1) {
     //console.log(time);
     return time;
 }
+
+
+
+exports.deleteOldData = functions.https.onRequest((req, res) => {
+    var currentDate = new Date()
+    // Set the time 3 months back
+    currentDate.setTime(currentDate.getTime() - 5184000000);
+    console.log('Data will be deleted older than:-  ' + currentDate )
+    // Get miilisceonds three month back
+    const threeMonthBack = currentDate.getTime();
+
+    ref.child('appointments').once('value')
+    .then(snap => {
+        snap.forEach(childSnap => {
+           
+            const start1 = childSnap.val().start
+            var date = new Date(start1)
+            const appointmentDate = date.getTime()
+
+
+            if (appointmentDate < threeMonthBack) {
+
+                
+                console.log('Appointment deleted:-  ' + start1 )
+               /*  client.messages.create(textMessage).then(message => console.log(message.sid, 'success'))
+                                                          .catch(err => console.log(err))
+                */
+               childSnap.ref.set(null).then(() => console.log('success'))
+               .catch(err => console.log(err))
+            }
+        })
+    }).then(() => {
+            res.send('Appointments 2 Months old are deleted')
+            })
+            .catch(error => {
+                res.send(error)
+            })
+
+});

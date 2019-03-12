@@ -33,6 +33,9 @@ a.dropdown-item > span > input {
     /* .cal-day-view .cal-hour-segment.cal-after-hour-start .cal-time {
         display: block !important;
       } */
+      .cal-week-view .cal-hour-segment.cal-after-hour-start .cal-time {
+        display: none !important;
+    }
 
       .cal-time {
         font-size: .9rem !important;
@@ -43,6 +46,7 @@ a.dropdown-item > span > input {
   
       .cal-day-view .cal-hour:not(:last-child) .cal-hour-segment, .cal-day-view .cal-hour:last-child :not(:last-child) .cal-hour-segment {
           border-bottom: thin dashed #77838f !important;
+          height: 30px;
       }
 
       .cal-day-view .cal-hour-segment::after {
@@ -54,3 +58,7 @@ a.dropdown-item > span > input {
           z-index: 10000 !important;
       }
   
+      /* .modal-body {
+        max-height: calc(100vh - 210px);
+        overflow-y: auto;
+    } */

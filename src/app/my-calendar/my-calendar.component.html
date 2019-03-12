@@ -41,7 +41,9 @@
                             <span> {{ _caleventService.selectedAppointment.landline }} </span> -->
                             <i class="fa fa-envelope-open" aria-hidden="true"></i>
                             <span> {{ _caleventService.selectedAppointment.email }} </span><br>
-                            <span>Total Appointments: {{ clientAppService.selectedClientApps.length }} </span><br>
+                            
+                            <!-- 23 Jan 19 hide total appointments as deletng previous data -->
+                            <!-- <span>Total Appointments: {{ clientAppService.selectedClientApps.length }} </span><br> -->
                             <!-- <div  [ngClass]="{greenClass: clientAppService.noShow < 1, redClass: clientAppService.noShow > 0}">Total NoShows: {{ clientAppService.noShow }} </div><br> -->
                             <div *ngIf="clientService.clientNote" class="alert alert-warning" role="alert" ><strong>Note: </strong> {{ clientService.clientNote }} </div>
                             <div *ngIf="clientAppService.noShow > 0" class="alert alert-danger" role="alert" >Total NoShows: {{ clientAppService.noShow }} </div>
@@ -136,6 +138,7 @@
 </ng-template>
 
 
+
 <!--Below was conext menue installed externally as I do not aware of calander inbuilt context menue option-->
 <!--<app-cal-contextmenu (notify)="contextAdd($event)"></app-cal-contextmenu> -->
 
@@ -171,7 +174,9 @@
                         <span> {{ _caleventService.selectedAppointment.landline }} </span> -->
                         <i class="fa fa-envelope-open" aria-hidden="true"></i>
                         <span> {{ _caleventService.selectedAppointment.email }} </span><br>
-                        <span *ngIf="this._caleventService.selectedAppointment.clientKey">Total Appointments: {{ clientAppService.selectedClientApps.length }} </span><br>
+                        <!-- 23 Jan 2018 Hiding total appointments -->
+                        <!-- <span *ngIf="this._caleventService.selectedAppointment.clientKey">Total Appointments: {{ clientAppService.selectedClientApps.length }} </span><br> -->
+                        
                         <!-- <span>Total NoShows: {{ clientAppService.noShow }} </span><br> -->
                         <div *ngIf="this._caleventService.selectedAppointment.clientKey"   >
                             <div *ngIf="clientService.clientNote" class="alert alert-warning" role="alert" ><strong>Note: </strong> {{ clientService.clientNote }} </div>
@@ -198,7 +203,7 @@
 
     <div class="col-md-9" style="margin: 0;">
         <div class="row text-center">
-            <div class="col-md-4">
+            <div class="col-md-4">   
                 <div class="btn-group">
                     <div class="btn btn-primary"
                          mwlCalendarPreviousView
@@ -264,7 +269,11 @@
                                     (dayHeaderClicked)="dayClicked($event.day, 'week'); view = 'day'"
                                     (eventClicked)="handleEvent('Clicked', $event.event)"
                                     (eventTimesChanged)="eventTimesChanged($event)"
-                                    [headerTemplate]="weekHeaderTemplate">
+                                    [hourSegments]="4"
+                                    [dayStartHour]="9"
+                                    [dayEndHour]="19"
+                                    [headerTemplate]="weekHeaderTemplate"
+                                    >
             </mwl-calendar-week-view>
             <mwl-calendar-day-view *ngSwitchCase="'day'"
                                    [viewDate]="viewDate"

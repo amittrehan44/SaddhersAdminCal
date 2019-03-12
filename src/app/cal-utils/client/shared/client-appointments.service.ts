@@ -149,16 +149,16 @@ export class ClientAppointmentsService {
     //Inserting appointments of selected client from autofill to this.selectedClientApps array
     getClientAppointments1(clientKey: string, allClientAppointments: ClientAppointments[], allAppointments: any[]){
       this.selectedClientApps = [];
-      console.log("inside getClientAppointments");
-      console.log(clientKey);
+      // console.log("inside getClientAppointments");
+      // console.log(clientKey);
       for (var y=0; y<allClientAppointments.length; y++){
-        console.log(allClientAppointments[y]["clientKey"]);
+        // console.log(allClientAppointments[y]["clientKey"]);
            if(allClientAppointments[y]["clientKey"]==clientKey){
-             console.log("Kiddan");
+            //  console.log("Kiddan");
              if(allClientAppointments[y]["appointmentKeys"]!=null ||  allClientAppointments[y]["appointmentKeys"] != undefined) {
                 var x = allClientAppointments[y]["appointmentKeys"];
-                console.log(x[6]);
-                 console.log(x.length);
+                // console.log(x[6]);
+                //  console.log(x.length);
                for(var z=0; z<100; z++){
                  var n = allClientAppointments[y]["appointmentKeys"][z];
                  if (n!= undefined )
@@ -180,8 +180,8 @@ export class ClientAppointmentsService {
   
   
       getNoShows1(clientApps: string[], allApps: any[]) {
-        console.log("Getting noShows from: "); 
-        console.log(clientApps); 
+        // console.log("Getting noShows from: "); 
+        // console.log(clientApps); 
         this.noShow = 0;
         for (var y=0; y<allApps.length; y++){
           for(var i=0; i<clientApps.length; i++){
@@ -192,7 +192,7 @@ export class ClientAppointmentsService {
                 }
             }
         }
-        console.log(this.noShow); 
+        // console.log(this.noShow); 
       }
 
 

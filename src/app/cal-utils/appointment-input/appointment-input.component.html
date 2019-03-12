@@ -95,22 +95,40 @@
         </div>
     </div>
 -->
-        <div class="row container col-md-12">
+        <div class="row container col-md-12 form-group">
             <div class="form-group col-md-6">
                 <label>Starts at</label>
-                <mwl-demo-utils-date-time-picker class="form-control"
+                <mwl-demo-utils-date-time-picker class="timePick form-control"
                                                  name="start"
                                                  #start="ngModel"
                                                  [(ngModel)]="_caleventService.selectedAppointment.start"
                                                  (ngModelChange)="refresh.next()"
                                                  placeholder="Not set">
                 </mwl-demo-utils-date-time-picker>
+
    <!--             <div><p>{{_caleventService.selectedAppointment.start}}</p></div> -->
-            </div>
-           
+            
+
+                <!-- <input
+                class="form-control"
+                name="start"
+                #start="ngModel"
+                type="text"
+                mwlFlatpickr
+                [(ngModel)]="_caleventService.selectedAppointment.start"
+                (ngModelChange)="refresh.next()"
+                [altInput]="true"
+                [convertModelValue]="true"
+                [enableTime]="true"
+                dateFormat="Y-m-dTH:i"
+                altFormat="F j, Y h:i K"
+                > -->
+
+        </div>   
+
             <div class="form-group col-md-6">
-                    <br />
-                    <br />
+                    <!-- <br />
+                    <br /> -->
 <!--                <label>Ends at</label>
                 <mwl-demo-utils-date-time-picker class="form-control"
                                                  name="end"
@@ -166,15 +184,16 @@
         </div>
 
         <div class="form-group col-md-12">
-            <button type="submit" class="btn btn-default" [disabled]="!appointmentForm.valid">
+            <button type="submit" class="btn btn-outline-primary" [disabled]="!appointmentForm.valid">
                 <i class="fa fa-floppy-o"></i> Submit
             </button>
-            <button type="button" class="btn btn-default" *ngIf="_caleventService.selectedAppointment.$key!=null" (click)="onDelete(appointmentForm)">
+            <button type="button" class="btn btn-outline-danger" *ngIf="_caleventService.selectedAppointment.$key!=null" (click)="onDelete(appointmentForm)">
                 <i class="fa fa-trash"></i> Delete
             </button>
-            <button type="button" class="btn btn-default" *ngIf="_caleventService.selectedAppointment.$key==null" (click)="resetForm(appointmentForm)">
+            <!-- 23 Jan 2019 Hide Reset Button
+            <button type="button" class="btn btn-outline-secondary" *ngIf="_caleventService.selectedAppointment.$key==null" (click)="resetForm(appointmentForm)">
                 <i class="fa fa-repeat"></i> Reset
-            </button>
+            </button> -->
         </div>
 </form>
 

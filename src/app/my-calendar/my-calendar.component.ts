@@ -205,8 +205,8 @@ export class MyCalendarComponent implements OnInit {
         this.modalData = { event, action };
         //this.modalRef = this.modal.open(this.modalContent, { size: 'sm' });
         this.modalRef = this.modal.open(this.modalContent, { size: 'lg' });
-        console.log(event);
-        console.log(this.modalRef);
+        // console.log(event);
+        // console.log(this.modalRef);
         // Assign values of selected appointment to selected events
         /* this._caleventService.appointmentToUpdate.$key = event.meta.$key;
         this._caleventService.appointmentToUpdate.firstname = event.meta.firstname;
@@ -236,8 +236,8 @@ export class MyCalendarComponent implements OnInit {
         //Place code to fill duration
         this.durationMins = differenceInMinutes(event.end, event.start);
         this.durationHrs = Number(this.durationMins / 60).toFixed(2);
-        console.log(this.durationHrs);
-        console.log(Number(Number(this.durationHrs.substring(2, 4)) / 100) * 60);
+        // console.log(this.durationHrs);
+        // console.log(Number(Number(this.durationHrs.substring(2, 4)) / 100) * 60);
         this._tempMins = Math.round(Number(Number(this.durationHrs.substring(2, 4)) / 100) * 60);
 
         if (this._tempMins > 9) {
@@ -247,7 +247,7 @@ export class MyCalendarComponent implements OnInit {
             this._tempMinsStr = "0" + this._tempMins;
         }
 
-        console.log(this._tempMinsStr);
+        // console.log(this._tempMinsStr);
         this._caleventService._durationString1 = this.durationHrs.substring(0, 1) + ":" + this._tempMinsStr;
 
         this._caleventService.optionsMultiselect = event.meta.serviceOptionIds;
@@ -451,12 +451,12 @@ export class MyCalendarComponent implements OnInit {
                 this.filteredEvents.push(y as eventsAPI);
 
             });
-            console.log(this.filteredEvents);
+            // console.log(this.filteredEvents);
             this.sortByDate();
             this.loadServices();
             this._caleventService.allAppointments = this.filteredEvents;
-            console.log("All Appointments");
-            console.log(this._caleventService.allAppointments);
+            // console.log("All Appointments");
+            // console.log(this._caleventService.allAppointments);
             //call load events in load services
 //            this.loadevents();
             
@@ -478,8 +478,8 @@ export class MyCalendarComponent implements OnInit {
           
      // console.log(y);
             })
-            console.log("All Clients");
-            console.log(this.clientService.allClients);
+            // console.log("All Clients");
+            // console.log(this.clientService.allClients);
         });
     }
 
@@ -494,8 +494,8 @@ export class MyCalendarComponent implements OnInit {
           
      // console.log(y);
             })
-            console.log("All Client Appointments: ");
-            console.log(this.clientAppService.allClientAppointments);
+            // console.log("All Client Appointments: ");
+            // console.log(this.clientAppService.allClientAppointments);
         });
 
     }

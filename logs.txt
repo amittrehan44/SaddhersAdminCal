@@ -1,0 +1,35 @@
+2019-02-11T22:01:54.046Z I hourlySMSReminder: Pacific Standard Time
+2019-02-11T22:01:54.047Z I hourlySMSReminder: inside pacific standard time if statement nd dayLightHours = 8
+2019-02-11T22:01:54.047Z I hourlySMSReminder: SMS will be sent to lunch on phone number+11111111111on Mon Feb 11 2019 at 03:15 PM
+2019-02-11T22:01:54.047Z I hourlySMSReminder: Sending messge to lunch on phone number+11111111111on Mon Feb 11 2019 at 03:15 PM
+2019-02-11T22:01:54.048616528Z D hourlySMSReminder: Function execution took 812 ms, finished with status code: 200
+2019-02-11T23:01:50.822101414Z D hourlySMSReminder: Function execution started
+2019-02-11T23:01:51.738Z I hourlySMSReminder: Pacific Standard Time
+2019-02-11T23:01:51.740Z I hourlySMSReminder: inside pacific standard time if statement nd dayLightHours = 8
+2019-02-11T23:01:51.740Z I hourlySMSReminder: SMS will be sent to lunch on phone number+11111111111on Mon Feb 11 2019 at 04:15 PM
+2019-02-11T23:01:51.740Z I hourlySMSReminder: Sending messge to lunch on phone number+11111111111on Mon Feb 11 2019 at 04:15 PM
+2019-02-11T23:01:51.844159812Z D hourlySMSReminder: Function execution took 1023 ms, finished with status code: 200
+2019-02-12T00:01:49.240047475Z D hourlySMSReminder: Function execution started
+2019-02-12T00:01:50.235Z I hourlySMSReminder: Pacific Standard Time
+2019-02-12T00:01:50.236Z I hourlySMSReminder: inside pacific standard time if statement nd dayLightHours = 8
+2019-02-12T00:01:50.236Z I hourlySMSReminder: SMS will be sent to justin on phone number+16048541187on Mon Feb 11 2019 at 05:00 PM
+2019-02-12T00:01:50.236Z I hourlySMSReminder: Sending messge to justin on phone number+16048541187on Mon Feb 11 2019 at 05:00 PM
+2019-02-12T00:01:50.249Z I hourlySMSReminder: Pacific Standard Time
+2019-02-12T00:01:50.249Z I hourlySMSReminder: inside pacific standard time if statement nd dayLightHours = 8
+2019-02-12T00:01:50.249Z I hourlySMSReminder: SMS will be sent to manpreet on phone number+17782405359on Mon Feb 11 2019 at 05:30 PM
+2019-02-12T00:01:50.249Z I hourlySMSReminder: Sending messge to manpreet on phone number+17782405359on Mon Feb 11 2019 at 05:30 PM
+2019-02-12T00:01:50.338964981Z D hourlySMSReminder: Function execution took 1100 ms, finished with status code: 200
+2019-02-12T00:01:56.629Z I hourlySMSReminder: SM6b9bc518533e402ba77a65f9806b6680 success
+2019-02-12T00:01:57.629Z I hourlySMSReminder: SM942a3d9baa0e454bb76baad390bd2299 success
+2019-02-12T01:01:50.954042697Z D hourlySMSReminder: Function execution started
+2019-02-12T01:01:51.542Z I hourlySMSReminder: Pacific Standard Time
+2019-02-12T01:01:51.543Z I hourlySMSReminder: inside pacific standard time if statement nd dayLightHours = 8
+2019-02-12T01:01:51.543Z I hourlySMSReminder: SMS will be sent to devin on phone number+12047510777on Mon Feb 11 2019 at 06:30 PM
+2019-02-12T01:01:51.543Z I hourlySMSReminder: Sending messge to devin on phone number+12047510777on Mon Feb 11 2019 at 06:30 PM
+2019-02-12T01:01:51.548Z I hourlySMSReminder: Pacific Standard Time
+2019-02-12T01:01:51.548Z I hourlySMSReminder: inside pacific standard time if statement nd dayLightHours = 8
+2019-02-12T01:01:51.548Z I hourlySMSReminder: SMS will be sent to raven on phone number+17787793320on Mon Feb 11 2019 at 06:00 PM
+2019-02-12T01:01:51.548Z I hourlySMSReminder: Sending messge to raven on phone number+17787793320on Mon Feb 11 2019 at 06:00 PM
+2019-02-12T01:01:51.638176095Z D hourlySMSReminder: Function execution took 685 ms, finished with status code: 200
+2019-02-12T01:01:53.329Z I hourlySMSReminder: SM468aac7b6d82433f95b16a76581a31b0 success
+2019-02-12T01:01:54.629Z I hourlySMSReminder: SMed823e3732564783b07f467fd6c5e059 success

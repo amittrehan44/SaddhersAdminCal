@@ -7,7 +7,9 @@ import { environment } from './../../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
-import { CalendarModule,  CalendarNativeDateFormatter, CalendarDateFormatter, DateFormatterParams   } from 'angular-calendar';
+import { CalendarModule,  CalendarNativeDateFormatter, CalendarDateFormatter, DateFormatterParams, DateAdapter  } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns'
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
@@ -49,11 +51,21 @@ export class CustomDateFormatter extends CalendarNativeDateFormatter {
       FormsModule,
       ReactiveFormsModule,
       CalendarModule.forRoot({
+        // dateFormatter: {
+        //   provide: CalendarDateFormatter, 
+        //   useClass: CustomDateFormatter
+        // }
+        provide: DateAdapter,
+        useFactory: adapterFactory
+      },
+      {
         dateFormatter: {
-          provide: CalendarDateFormatter, 
-          useClass: CustomDateFormatter
-        }
-      }),
+            provide: CalendarDateFormatter, 
+             useClass: CustomDateFormatter
+           }
+      }
+      
+      ),
       CalUtilsModule,
       CalendarModule,
       AppRoutingModule

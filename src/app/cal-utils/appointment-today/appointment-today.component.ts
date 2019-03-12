@@ -57,13 +57,13 @@ export class AppointmentTodayComponent implements OnInit {
             });
             
 
-            console.log(this.appointmentlist);
-            console.log("belwo are upcoming appointments: ");
-            console.log(this.todaysAppointment);
+            // console.log(this.appointmentlist);
+            // console.log("belwo are upcoming appointments: ");
+            // console.log(this.todaysAppointment);
             
             this.sortByDate();
-            console.log("belwo are sorted upcoming appointments: ");
-            console.log(this.todaysAppointment);
+            // console.log("belwo are sorted upcoming appointments: ");
+            // console.log(this.todaysAppointment);
             /*
                      //  console.log(this.appointmentlist.find(i => new Date(i.start.getDate()).toString() === this.today.getDate().toString()));
                        this.date1 = new Date(this.appointmentlist[0].start);
@@ -98,10 +98,10 @@ export class AppointmentTodayComponent implements OnInit {
     }
 
     public sortByDate(): void {
-        console.log(this.today);
-        console.log(this.today.getDate());
-        console.log(this.today.getMonth());
-        console.log(this.today.getFullYear());
+        // console.log(this.today);
+        // console.log(this.today.getDate());
+        // console.log(this.today.getMonth());
+        // console.log(this.today.getFullYear());
         this.todaysAppointment.sort((a: eventsAPI, b: eventsAPI) => {
 
             this.dat1 = new Date(a.start);

@@ -116,7 +116,7 @@ export class AppointmentInputComponent implements OnInit {
             });
         }
     }
-        console.log(this.selectedService);
+        // console.log(this.selectedService);
         this._caleventService.selectService = this.selectedService;
     }
 
@@ -263,8 +263,8 @@ export class AppointmentInputComponent implements OnInit {
           //return null;
 
           for (var y=0; y<this.clientAppService.allClientAppointments.length; y++){
-            console.log(this.clientAppService.allClientAppointments[y]["clientKey"]);
-            console.log(this.clientAppService.allClientAppointments[y]["$key"]);
+            // console.log(this.clientAppService.allClientAppointments[y]["clientKey"]);
+            // console.log(this.clientAppService.allClientAppointments[y]["$key"]);
             if(this.clientAppService.allClientAppointments[y]["clientKey"]==clientKey){
                 this.clientAppService.insertClientApp(clientKey, this.clientAppService.allClientAppointments[y]["$key"]);   
             }

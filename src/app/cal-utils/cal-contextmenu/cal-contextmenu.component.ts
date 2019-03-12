@@ -1,6 +1,6 @@
 import { Component, ViewChild, Input, Output, EventEmitter  } from '@angular/core';
 
-import { ContextMenuService, ContextMenuComponent } from 'ngx-contextmenu/lib';
+import { ContextMenuService, ContextMenuComponent } from 'ngx-contextmenu';
 
 @Component({
   selector: 'app-cal-contextmenu',
